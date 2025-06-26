@@ -13,5 +13,9 @@
   "devDependencies": {
     "@types/node": "^22.0.0",
     "tsx": "^4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "ora": "^8.2.0"
   }
 }
