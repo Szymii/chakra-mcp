@@ -58,13 +58,59 @@ function displayFoundLinks(links: DocumentationLink[]): void {
 }
 
 function createFileName(linkName: string): string {
+  return linkName
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function createSectionFileName(sectionTitle: string): string {
   return (
-    linkName
+    sectionTitle
       .toLowerCase()
       .replace(/[^a-z0-9]/g, "-")
       .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "") + ".txt"
+      .replace(/^-|-$/g, "") + ".md"
   );
+}
+
+function splitFileIntoSections(
+  content: string,
+  fileName: string,
+  tmpDir: string
+): void {
+  // Split content by level 1 headers (# Something)
+  const sections = content.split(/(?=^# [A-Z])/m);
+
+  // Skip the first section if it's just the system message or empty
+  const mainSections = sections.filter(
+    (section) => section.trim() && section.match(/^# [A-Z]/)
+  );
+
+  if (mainSections.length === 0) {
+    // If no sections found, save as single file
+    const filePath = join(tmpDir, fileName + ".md");
+    writeFileSync(filePath, content, "utf-8");
+    return;
+  }
+
+  // Create directory for this documentation type
+  const sectionDir = join(tmpDir, fileName);
+  mkdirSync(sectionDir, { recursive: true });
+
+  mainSections.forEach((section) => {
+    const lines = section.trim().split("\n");
+    const headerLine = lines[0];
+
+    if (headerLine && headerLine.startsWith("# ")) {
+      const sectionTitle = headerLine.substring(2).trim();
+      const sectionFileName = createSectionFileName(sectionTitle);
+      const sectionFilePath = join(sectionDir, sectionFileName);
+
+      writeFileSync(sectionFilePath, section.trim(), "utf-8");
+    }
+  });
 }
 
 async function downloadDocumentationFiles(
@@ -92,12 +138,14 @@ async function downloadDocumentationFiles(
 
       const docContent = await docResponse.text();
       const fileName = createFileName(link.name);
-      const filePath = join(tmpDir, fileName);
 
-      writeFileSync(filePath, docContent, "utf-8");
+      // Split file into sections instead of saving as one large file
+      splitFileIntoSections(docContent, fileName, tmpDir);
 
       const sizeInfo = `${(docContent.length / 1024).toFixed(1)} KB`;
-      spinner.succeed(`[${progress}] ${fileName} (${sizeInfo})`);
+      spinner.succeed(
+        `[${progress}] ${fileName}/ (${sizeInfo} split into sections)`
+      );
     } catch (error) {
       spinner.fail(
         `[${progress}] Download error for ${link.name}: ${
