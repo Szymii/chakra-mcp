@@ -2,8 +2,12 @@
   "name": "chakra-mcp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/server.js",
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node build/server.js",
+    "dev": "tsx src/server.ts",
     "update": "tsx src/update.ts"
   },
   "keywords": [],
@@ -11,8 +15,9 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "tsx": "^4.0.0"
+    "@types/node": "^22.15.33",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "chalk": "^5.4.1",
