@@ -2,9 +2,9 @@
   "name": "chakra-mcp",
   "version": "1.0.0",
   "description": "",
-  "main": "build/server.js",
+  "main": "src/server.ts",
   "scripts": {
-    "start": "bun src/server.ts",
+    "start": "bun run --silent src/server.ts",
     "dev": "tsx src/server.ts",
     "update": "tsx src/update.ts"
   },

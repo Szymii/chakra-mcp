@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "chakra-ui-docs": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "--silent",
+        "C:\\Users\\Szymi\\Desktop\\Pro\\chakra-mcp\\src\\server.ts"
+      ]
+    },
+  }
+}
