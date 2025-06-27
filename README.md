@@ -8,12 +8,6 @@ Model Context Protocol server dla dokumentacji Chakra UI.
 pnpm install
 ```
 
-## Budowanie
-
-```bash
-pnpm run build
-```
-
 ## Aktualizacja dokumentacji
 
 ```bash
@@ -22,12 +16,10 @@ pnpm run update
 
 ## Uruchomienie servera
 
-### Opcja 1: Zbudowany server (produkcja)
-
 #### Krok 1: Zbuduj projekt
 
 ```bash
-pnpm run build
+bun src/server.ts
 ```
 
 #### Krok 2: Uruchom MCP Inspector
@@ -35,13 +27,13 @@ pnpm run build
 W pierwszym terminalu:
 
 ```bash
-npx @modelcontextprotocol/inspector
+pnpx @modelcontextprotocol/inspector
 ```
 
 **W MCP Inspector użyj:**
 
-- Command: `node`
-- Arguments: `build/server.js`
+- Command: `bun`
+- Arguments: `run src/server.ts`
 
 ## Struktura projektu
 
@@ -51,8 +43,6 @@ npx @modelcontextprotocol/inspector
 
 ## Dostępne skrypty
 
-- `pnpm run build` - kompiluje TypeScript do JavaScript
-- `pnpm run build:watch` - kompiluje z obserwowaniem zmian
-- `pnpm start` - uruchamia zbudowany server
-- `pnpm run dev` - uruchamia server w trybie rozwoju (TypeScript)
-- `pnpm run update` - aktualizuje dokumentację Chakra UI
+- `pnpm start` - uruchamia server
+- `pnpm run dev` - uruchamia server w trybie dev (TypeScript)
+- `pnpm run update` - pobiera najnowszą wersję dokumentacji Chakra UI

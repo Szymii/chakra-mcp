@@ -4,9 +4,7 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "start": "node build/server.js",
+    "start": "bun src/server.ts",
     "dev": "tsx src/server.ts",
     "update": "tsx src/update.ts"
   },
