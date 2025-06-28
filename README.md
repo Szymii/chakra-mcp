@@ -28,6 +28,28 @@ bun src/server.ts
 bunx @modelcontextprotocol/inspector
 ```
 
+## Korzystanie z kontenera Docker
+
+### Pobranie obrazu
+
+```bash
+docker pull szymii/chakra-mcp
+```
+
+### Uruchomienie serwera
+
+```bash
+docker run -it szymii/chakra-mcp
+```
+
+### Aktualizacja dokumentacji
+
+Jeśli chcesz zaktualizować dokumentację, uruchom kontener z odpowiednim poleceniem:
+
+```bash
+docker run -it twoja-nazwa/chakra-mcp update
+```
+
 **W MCP Inspector użyj:**
 
 - Command: `bun`
