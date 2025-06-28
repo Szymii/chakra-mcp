@@ -2,11 +2,16 @@
   "servers": {
     "chakra-ui-docs": {
       "type": "stdio",
-      "command": "bun",
+      "command": "docker",
       "args": [
         "run",
-        "--silent",
-        "C:\\Users\\Szymi\\Desktop\\Pro\\chakra-mcp\\src\\server.ts"
+        "--rm",
+        "-i",
+        "-a",
+        "stdin",
+        "-a",
+        "stdout",
+        "chakra-mcp"
       ]
     },
   }

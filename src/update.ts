@@ -158,7 +158,7 @@ async function downloadDocumentationFiles(
 
 export async function update(): Promise<void> {
   const url = "https://chakra-ui.com/llms.txt";
-  const tmpDir = join(process.cwd(), "src", "tmp");
+  const tmpDir = join(__dirname, "tmp");
 
   try {
     await cleanTmpDirectory(tmpDir);
