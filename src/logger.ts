@@ -5,7 +5,7 @@ export class Logger {
   private logFilePath: string;
 
   constructor(logFileName: string = "log.txt") {
-    this.logFilePath = join(process.cwd(), logFileName);
+    this.logFilePath = join(__dirname, "../", logFileName);
   }
 
   log(message: string): void {

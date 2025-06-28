@@ -24,10 +24,8 @@ bun src/server.ts
 
 #### Krok 2: Uruchom MCP Inspector
 
-W pierwszym terminalu:
-
 ```bash
-pnpx @modelcontextprotocol/inspector
+bunx @modelcontextprotocol/inspector
 ```
 
 **W MCP Inspector użyj:**

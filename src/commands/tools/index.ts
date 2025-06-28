@@ -3,6 +3,7 @@ import { getComponents, getComponent } from "./components";
 import { getStyling, getStylingChapter } from "./styling";
 import { getTheming, getThemingChapter } from "./theming";
 import { getMigratingGuideToV3 } from "./migrating-to-v3";
+import { join } from "node:path";
 
 interface Tool {
   name: string;
@@ -24,9 +25,8 @@ export const tools: Tool[] = [
 ];
 
 export function buildTmpPath(folder: string, file?: string) {
-  const path = require("path");
   if (file) {
-    return path.join(__dirname, "../../tmp", folder, file);
+    return join(__dirname, "../../tmp", folder, file);
   }
-  return path.join(__dirname, "../../tmp", folder);
+  return join(__dirname, "../../tmp", folder);
 }
